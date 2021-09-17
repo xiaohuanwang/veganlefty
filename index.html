@@ -7,6 +7,8 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> 
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
 </head>
 </head>
 <body>
@@ -16,10 +18,13 @@
       name: '吃素的左撇子',
       repo: 'https://github.com/xiaohuanwang',
       coverpage: true,
-      maxLevel: 5,//最大支持渲染的标题层级
-      subMaxLevel: 3,
+      maxLevel: 6,//最大支持渲染的标题层级
+      subMaxLevel: 6,
       homepage: 'README.md',
       loadSidebar: true,
+      alias: {
+      '/.*/_sidebar.md': '/_sidebar.md',
+      },
       auto2top: true,//切换页面后是否自动跳转到页面顶部
       //全文搜索
       search: {
@@ -33,6 +38,7 @@
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
   <!--Java代码高亮-->
   <script src="//unpkg.com/prismjs/components/prism-java.js"></script>
   <!--全文搜索,直接用官方提供的无法生效-->
