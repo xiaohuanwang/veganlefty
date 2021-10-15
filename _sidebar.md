@@ -12,7 +12,9 @@
 - Spring
   - Spring基础 
   - Spring Boot
+- 微服务
   - Spring  Cloud
+  - Dubbo
 - 设计模式
   - [01设计模式--工厂方法模式](./docs/设计模式/01设计模式--工厂方法模式.md)
   - [02设计模式--抽象工厂模式](./docs/设计模式/02设计模式--抽象工厂模式.md)
@@ -68,6 +70,9 @@
   * RocketMQ
 - Linux
 - Vue
+- 其他
+  * Git
+  * Vim
 
 
 
