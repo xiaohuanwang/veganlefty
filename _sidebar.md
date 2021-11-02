@@ -1,6 +1,6 @@
 - Java
   - Java基础
-    * [01Java 命名规范](./docs/Java/Java基础/Java 命名规范.md)
+    * [01Java命名规范](./docs/Java/Java基础/Java命名规范.md)
   - Java并发
     * [01Java并发--Java内存模型](./docs/Java/Java并发/01Java并发--Java内存模型.md)
     * [02Java并发--Java并发基础](./docs/Java/Java并发/02Java并发--Java并发基础.md)
@@ -74,7 +74,7 @@
 - Vue
 - 其他
   * Git
-    * [Git 代码提交规范](./docs/其它/Git/Git 代码提交规范.md)
+    * [Git代码提交规范](./docs/其它/Git/Git代码提交规范.md)
   * Vim
   * [为什么开发人员都不愿意写接口文档](./docs/其它/为什么开发人员都不愿意写接口文档.md)
 
