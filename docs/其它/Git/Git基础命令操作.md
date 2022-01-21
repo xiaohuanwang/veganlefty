@@ -1,0 +1,73 @@
+### git文件添加命令
+
+#### git add 命令介绍
+
+将工作区的文件或目录通过add命令添加到git暂存区,命令如下：
+
+将单个新建文件，添加到暂存区：
+
+```
+git add index.html
+```
+
+将多个新建文件夹和文件，添加到暂存存：
+
+```
+git add images test index.js index.css
+```
+
+将文件的新增，修改，删除，添加到暂存区：
+
+```
+git add .`或者`git add -all
+```
+
+将git管理中跟踪的文件，从新修改过的文件，添加到暂存区：
+
+`git add -u` 说明：新创建的文件，不会被添加到暂存区
+
+重命名暂存区里面的文件名，命令如下：
+
+`git mv old_name new_name` *从新命名后，不需要从新提交到暂存区，直接commit提交就行*
+
+清空暂存区和工作区的变动，使文件还原为当初的样子，命令如下：
+
+`git reset --hard` **⚠️危险命令，不推荐使用**
+
+#### git log命令介绍
+
+查看所有分支的历史
+
+```
+git log --all
+```
+
+查看图形化的 log 地址
+
+```
+git log --all --graph
+```
+
+查看单行的简洁历史
+
+```
+git log --oneline
+```
+
+查看最近的四条简洁历史
+
+```
+git log --oneline -n4
+```
+
+查看所有分支最近 4 条单行的图形化历史
+
+```
+git log --oneline --all -n4 --graph
+```
+
+跳转到git log 的帮助文档网页
+
+```
+git help --web log
+```
