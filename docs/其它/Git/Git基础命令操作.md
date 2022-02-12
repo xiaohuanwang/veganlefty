@@ -34,6 +34,89 @@ git add .`或者`git add -all
 
 `git reset --hard` **⚠️危险命令，不推荐使用**
 
+#### git branch 命令介绍
+
+git 分支查看命令：
+
+```console
+git branch        //查看本地分支
+git branch -a     //查看本地和remote远程分支
+git branch -av    //查看分支提交详情
+```
+
+git 分支创建 branchName , 并切换到创建的新分支 branchName 目录下：
+
+```console
+git branch branchName    //创建分支
+git checkout branchName  //切换分支
+##以上命令可以简写
+git checkout -b branchName  //创建分支并切换到新创建的分支目录下
+```
+
+git 删除分支命令：
+
+```console
+git branch -d branchName       //删除分支
+git branch -D branchName    //强制删除分支
+**区别 使用-d 在删除前Git会判断在该分支上开发的功能是否被merge的其它分支。如果没有，不能删除。如果merge到其它分支，但之后又在其上做了开发，使用-d还是不能删除。-D会强制删除**
+```
+
+
+
+#### git commit 命令介绍
+
+git 提交命令：
+
+```console
+git commit        //把添加的暂存区的文件提交到git
+git commit -m 'message'  //把添加的暂存区的文件提交到git，并加入message
+```
+
+git 修改最新 commit 的 message 的命令：
+
+```console
+git commit --amend     //修改最新commit的message   
+
+hint: Waiting for your editor to close the file... error: There was a problem with the editor 'vi'.
+Please supply the message using either -m or -F option.
+解决办法：
+git config --global core.editor 'vim'
+```
+
+git 修改老旧的 commit 的 message 的命令：
+
+```console
+git rebase -i xxxxx   //修改老旧commit的message   xxxxx 父节点commitID
+```
+
+git 修改老旧的多个 commit 的 message 的命令：
+
+```console
+git rebase -i xxxxx   //修改老旧commit的message   xxxxx 父节点commitID
+```
+
+git 撤销最近几次的 commit ：
+
+```console
+git reset --hard xxxx    //撤销最近几次的 commit   xxxxx 父节点commitID
+```
+
+#### git diff 命令介绍
+
+git diff 命令：
+
+```console
+暂存区与HEAD比较：git diff --cached
+
+暂存区与工作区比较: git diff
+
+暂存区恢复成HEAD : git reset HEAD
+
+暂存区覆盖工作区修改：git checkout 
+```
+
+
+
 #### git log命令介绍
 
 查看所有分支的历史
