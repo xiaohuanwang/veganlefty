@@ -87,8 +87,8 @@
   * Vim
   * 软件工具
     * [Apifox接口文档测试工具介绍](./docs/其它/软件工具/Apifox接口文档测试工具介绍.md)
-    * [Mac下Homebrew 常用命令](./docs/其它/软件工具/Mac下Homebrew 常用命令.md)
-    * [Mac上使用 jenv管理多个JDK版本](./docs/其它/软件工具/Mac上使用 jenv管理多个JDK版本.md)
+    * [Mac下Homebrew常用命令](./docs/其它/软件工具/Mac下Homebrew常用命令.md)
+    * [Mac上使用jenv管理多个JDK版本](./docs/其它/软件工具/Mac上使用jenv管理多个JDK版本.md)
 
 
 
