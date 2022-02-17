@@ -72,12 +72,23 @@
   * RabbitMQ
   * RocketMQ
 - Linux
+
+  - [Linux基础命令](./docs/Linux/Linux基础命令.md)
+  - [Linux安装JDK和Maven](./docs/Linux/Linux安装JDK和Maven.md)
+  - [Linux 之Centos 7上安装Cockpit监控服务器](./docs/Linux/Linux 之Centos 7上安装Cockpit监控服务器.md)
+  - [Linux 之CentOS 7防火墙配置命令](./docs/Linux/Linux 之CentOS 7防火墙配置命令.md)
+  - [Linux 之CentOS7 配置阿里云yum源](./docs/Linux/Linux 之CentOS7 配置阿里云yum源.md)
 - Vue
 - 其他
   * Git
+    * [Git初始安装指南](./docs/其它/Git/Git初始安装指南.md)
     * [Git代码提交规范](./docs/其它/Git/Git代码提交规范.md)
+    * [Git基础命令操作](./docs/其它/Git/Git基础命令操作.md)
   * Vim
-  * [为什么开发人员都不愿意写接口文档](./docs/其它/为什么开发人员都不愿意写接口文档.md)
+  * 软件工具
+    * [Apifox接口文档测试工具介绍](./docs/其它/软件工具/Apifox接口文档测试工具介绍.md)
+    * [Mac 下 Homebrew 常用命令](./docs/其它/软件工具/Mac 下 Homebrew 常用命令.md)
+    * [Mac上使用 jenv管理多个JDK版本](./docs/其它/软件工具/Mac上使用 jenv管理多个JDK版本.md)
 
 
 
