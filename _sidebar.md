@@ -13,9 +13,9 @@
   - JVM虚拟机
 - Spring
   - Spring基础 
-  * Spring Boot
-    * [Spring Boot 内置工具类总结 ](./docs/Spring/Spring Boot/Spring Boot 内置工具类总结 .md)
-    * [Spring Boot使用Event来进行业务耦合](./docs/Spring/Spring Boot/Spring Boot使用Event来进行业务耦合 .md)
+  * SpringBoot
+    * [SpringBoot 内置工具类总结 ](./docs/Spring/SpringBoot/SpringBoot 内置工具类总结.md)
+    * [SpringBoot使用Event来进行业务耦合](./docs/Spring/SpringBoot/Spring Boot使用Event来进行业务耦合.md)
 - 微服务
   - Spring  Cloud
   - Dubbo
