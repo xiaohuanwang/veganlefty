@@ -23,10 +23,30 @@
 
 # 快速开始
 
+使用brew安装node(推荐)
+
+```bash
+# 配置npm 配置源淘宝源加速（推荐）永久
+npm config set registry https://registry.npm.taobao.org
+
+# 安装淘宝cnpm（推荐）
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+# 安装node环境
+brew install node
+
+# 查看node状态
+node -v
+```
+
 推荐全局安装 `docsify-cli` 工具，可以方便地创建及在本地预览生成的文档。
 
 ```bash
-npm i docsify-cli -g
+# 使用cnpm安装docsify-cli脚手架
+cnpm install i docsify-cli -g
+
+# 查看
+docsify -v
 ```
 
 ## 初始化项目
@@ -35,6 +55,23 @@ npm i docsify-cli -g
 
 ```bash
 docsify init ./docs
+
+# 初始化docsify的index.html主页
+docsify init <path> [--local false] [--theme vue]
+# path 默认是当前目录,可以指定相对目录和绝对目录,将目录下的文件作为文档文件
+# --local 默认是false 即使用unpkg.com作为baseurl
+# --theme 默认是vue 即使用vue风格 还有buble, dark 和 pure可选
+
+# 启动docsify本地静态网页服务
+docsify serve <path> [--open false] [--port 3000]
+# path 默认是当前目录,可以指定相对目录和绝对目录,将目录下的文件作为文档文件
+# --open 默认是false 即启动不打开网页
+# --port 默认是3000 即端口默认3000
+
+# 生成稳定的侧边栏目录（v4.4.3后才支持）
+docsify generate <path> [--sidebar _sidebar.md]
+# path 默认是当前目录,可以指定相对目录和绝对目录,将目录下的文件作为文档文件
+# --sidebar 默认_sidebar.md 将目录下的文档结构生产侧边栏目录
 ```
 
 ## 开始写文档
@@ -55,54 +92,44 @@ docsify init ./docs
 docsify serve docs
 ```
 
-?> 更多命令行工具用法，参考 [docsify-cli 文档](https://github.com/docsifyjs/docsify-cli)。
+ 更多命令行工具用法，参考 [docsify-cli 文档](https://github.com/docsifyjs/docsify-cli)。
 
-## 手动初始化
+## 自定义组件
 
-如果不喜欢 npm 或者觉得安装工具太麻烦，我们可以直接手动创建一个 `index.html` 文件。
-
-*index.html*
-
-```html
+```
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      //...
-    }
-  </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        name: 'mydoc',       //
+        repo: '/',           //渲染github挂件 配置本地或线上地址
+        search: 'auto',      //默认的全局搜索 详细参数请看插件文档
+        loadSidebar: true,   //开启侧边栏 使用_sidebar.md 
+        subMaxLevel: 2,      //侧边栏层级最大层级2
+        loadNavbar: true,    //加载导航栏 需要编写_navbar.md
+        autoHeader: true    //配合loadSidebar 自动添加标题
+      }
+    </script>
+  <!-- 全文搜索插件 -->
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <!-- 图片缩放插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!-- 代码拷贝插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>
 </html>
 ```
-
-如果你的系统里安装了 Python 的话，也可以很容易地启动一个静态服务器去预览你的网站。
-
-```python2
-cd docs && python -m SimpleHTTPServer 3000
-```
-
-```python3
-cd docs && python -m http.server 3000
-```
-
-## Loading 提示
-
-初始化时会显示 `Loading...` 内容，你可以自定义提示信息。
-
-
-```html
-  <!-- index.html -->
-
-  <div id="app">加载中</div>
-```
-
 
