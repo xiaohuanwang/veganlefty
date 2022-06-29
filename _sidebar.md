@@ -16,6 +16,7 @@
   * SpringBoot
     * [SpringBoot内置工具类总结](./docs/Spring/SpringBoot/SpringBoot内置工具类总结.md)
     * [SpringBoot使用Event来进行业务耦合](./docs/Spring/SpringBoot/SpringBoot使用Event来进行业务耦合.md)
+    * [SpringBoot事件Event原理分析](./docs/Spring/SpringBoot/SpringBoot事件Event原理分析.md)
 - 微服务
   - Spring  Cloud
   - Dubbo
