@@ -18,7 +18,7 @@ MQ(message queue)，从字面意思上看，本质是个队列，FIFO 先入先�
 
 ### RabbitMQ 介绍
 
-2007 年发布，是一个在 AMQP(高级消息队列协议)基础上完成的，可复用的企业消息系统，是**当前最主流的消息中间件之一**。RabbitMQ 是一个消息中间件:它接受并转发消息
+2007 年发布，是一个在 AMQP(高级消息队列协议)基础上完成的，可复用的企业消息系统，AMQP协议是具有现代特征的二进制协议。是一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。是**当前最主流的消息中间件之一**。RabbitMQ 是一个消息中间件:它接受并转发消息
 
 优点:由于 erlang 语言的**高并发特性**，性能较好;**吞吐量到万级**，MQ 功能比较完备,健壮、稳定、易 用、跨平台、**支持多种语言** 如:Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP 等，支持 AJAX 文档齐全;开源提供的管理界面非常棒，用起来很好用,**社区活跃度高**;更新频率相当高
 
@@ -28,15 +28,15 @@ MQ(message queue)，从字面意思上看，本质是个队列，FIFO 先入先�
 
 #### 生产者
 
- 产生数据发送消息的程序是生产者
+ 产生数据发送消息的程序是生产者。
 
 #### 交换机
 
-交换机是 RabbitMQ 非常重要的一个部件，一方面它接收来自生产者的消息，另一方面它将消息 推送到队列中。交换机必须确切知道如何处理它接收到的消息，是将这些消息推送到特定队列还是推 送到多个队列，亦或者是把消息丢弃，这个得有交换机类型决定
+交换机是 RabbitMQ 非常重要的一个部件，一方面它接收来自生产者的消息，另一方面它将消息 推送到队列中。交换机必须确切知道如何处理它接收到的消息，是将这些消息推送到特定队列还是推 送到多个队列，亦或者是把消息丢弃，这个得有交换机类型决定。
 
 #### 队列
 
-队列是 RabbitMQ 内部使用的一种数据结构，尽管消息流经 RabbitMQ 和应用程序，但它们只能存 储在队列中。队列仅受主机的内存和磁盘限制的约束，本质上是一个大的消息缓冲区。许多生产者可 以将消息发送到一个队列，许多消费者可以尝试从一个队列接收数据。这就是我们使用队列的方式
+队列是 RabbitMQ 内部使用的一种数据结构，尽管消息流经 RabbitMQ 和应用程序，但它们只能存 储在队列中。队列仅受主机的内存和磁盘限制的约束，本质上是一个大的消息缓冲区。许多生产者可 以将消息发送到一个队列，许多消费者可以尝试从一个队列接收数据。这就是我们使用队列的方式。
 
 #### 消费者
 
@@ -44,32 +44,41 @@ MQ(message queue)，从字面意思上看，本质是个队列，FIFO 先入先�
 
 ### RabbitMQ 工作原理
 
+AMQP 协议模型由三部分组成：生产者、消费者和服务端，执行流程如下：
+
+1. 生产者是连接到 Server，建立一个连接，开启一个信道。
+2. 生产者声明交换器和队列，设置相关属性，并通过路由键将交换器和队列进行绑定。
+3. 消费者也需要进行建立连接，开启信道等操作，便于接收消息。
+4. 生产者发送消息，发送到服务端中的虚拟主机。
+5. 虚拟主机中的交换器根据路由键选择路由规则，发送到不同的消息队列中。
+6. 订阅了消息队列的消费者就可以获取到消息，进行消费。
+
 ![image-20220713153151229](http://image.wangxiaohuan.com/blog/image/202207131532474.png)
 
 ##### **Broker**
 
-接收和分发消息的应用，RabbitMQ Server 就是 Message Broker
+接收和分发消息的应用，RabbitMQ Server 就是 Message Broker。
 
 ##### **Virtual host**
 
-出于多租户和安全因素设计的，把 AMQP 的基本组件划分到一个虚拟的分组中，类似 于网络中的 namespace 概念。当多个不同的用户使用同一个 RabbitMQ server 提供的服务时，可以划分出 多个 vhost，每个用户在自己的 vhost 创建 exchange/queue 等
+出于多租户和安全因素设计的，把 AMQP 的基本组件划分到一个虚拟的分组中，类似 于网络中的 namespace 概念。当多个不同的用户使用同一个 RabbitMQ server 提供的服务时，可以划分出 多个 vhost，每个用户在自己的 vhost 创建 exchange/queue 等。
 
 ##### **Connection**
 
-publisher/consumer 和 broker 之间的 TCP 连接
+publisher/consumer 和 broker 之间的 TCP 连接。
 
 ##### **Channel**
 
-如果每一次访问 RabbitMQ 都建立一个 Connection，在消息量大的时候建立 TCP Connection 的开销将是巨大的，效率也较低。Channel 是在 connection 内部建立的逻辑连接，如果应用程 序支持多线程，通常每个 thread 创建单独的 channel 进行通讯，AMQP method 包含了 channel id 帮助客 户端和 message broker 识别 channel，所以 channel 之间是完全隔离的。Channel 作为轻量级的 **Connection** **极大减少了操作系统建立** **TCP connection** **的开销**
+如果每一次访问 RabbitMQ 都建立一个 Connection，在消息量大的时候建立 TCP Connection 的开销将是巨大的，效率也较低。Channel 是在 connection 内部建立的逻辑连接，如果应用程 序支持多线程，通常每个 thread 创建单独的 channel 进行通讯，AMQP method 包含了 channel id 帮助客 户端和 message broker 识别 channel，所以 channel 之间是完全隔离的。Channel 作为轻量级的 **Connection** **极大减少了操作系统建立** **TCP connection** **的开销**。
 
 ##### **Exchange**
 
-message 到达 broker 的第一站，根据分发规则，匹配查询表中的 routing key，分发 消息到 queue 中去。常用的类型有:direct (point-to-point), topic (publish-subscribe) and fanout (multicast)
+message 到达 broker 的第一站，根据分发规则，匹配查询表中的 routing key，分发 消息到 queue 中去。常用的类型有:direct (point-to-point), topic (publish-subscribe) , fanout (multicast) and headers。
 
 #####  **Queue**
 
-消息最终被送到这里等待 consumer 取走
+消息最终被送到这里等待 consumer 取走。
 
 ##### **Binding**
 
-exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key，Binding 信息被保 存到 exchange 中的查询表中，用于 message 的分发依据
+exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key，Binding 信息被保 存到 exchange 中的查询表中，用于 message 的分发依据。
