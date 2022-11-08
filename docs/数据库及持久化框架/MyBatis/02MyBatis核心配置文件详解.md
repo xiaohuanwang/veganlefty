@@ -101,7 +101,7 @@ MyBatis中的mapper接口相当于以前的dao。但是区别在于，mapper仅�
 
 映射:二者之间的对应关系
 
-1、映射文件的命名规则:
+#### 映射文件的命名规则:
 
  表所对应的实体类的类名+Mapper.xml 。
 
@@ -113,8 +113,38 @@ MyBatis中的mapper接口相当于以前的dao。但是区别在于，mapper仅�
 
  MyBatis映射文件存放的位置是src/main/resources/mappers目录下。
 
- 2、MyBatis中可以面向接口操作数据，要保证两个一致: 
+#### MyBatis中可以面向接口操作数据，要保证两个一致: 
 
 mapper接口的全类名和映射文件的命名空间(namespace)保持一致 。
 
 mapper接口中方法的方法名和映射文件中编写SQL的标签的id属性保持一致。
+
+#### 查询的标签select必须设置属性
+
+用于设置实体类和数据库表的映射关系，主要值为一下
+
+```
+<select
+  id="selectPerson"
+  parameterType="int"
+  parameterMap="deprecated"
+  resultType="hashmap"
+  resultMap="personResultMap"
+  flushCache="false"
+  useCache="true"
+  timeout="10"
+  fetchSize="256"
+  statementType="PREPARED"
+  resultSetType="FORWARD_ONLY">
+```
+
+- resultType : 自动映射，用于属性名和表中字段名一致的情况 ，期望从这条语句中返回结果的类全限定名或别名, resultType 和 resultMap 之间只能同时使用一个。
+
+- resultMap : 自定义映射，对外部 resultMap 的命名引用，用于一对多或多对一或字段名和属性名不一致的情况,resultType 和 resultMap 之间只能同时使用一个。
+- resultSets :   这个设置仅适用于多结果集的情况。它将列出语句执行后返回的结果集并赋予每个结果集一个名称，多个名称之间以逗号分隔。    
+- ​          
+
+
+
+
+

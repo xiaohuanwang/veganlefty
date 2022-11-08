@@ -97,12 +97,31 @@ Maven本地仓库根目录\javax\servlet\servlet-api\2.5\servlet-api-2.5.jar
     <!-- 当前工程所依赖的jar包 -->
     <dependencies>
       <!-- 使用dependency配置一个具体的依赖 -->
-        <dependency>
+        <dependency> 
+                      <!-- 
+groupId、artifactId、version ：依赖的基本坐标。
+type ：依赖的类型。
+scope标签配置依赖的范围 
+										complie : 编译依赖范围。如果没有指定，默认使用该依赖范围，使用此依赖范围的 Maven 依赖，对于编译、测试、运行三种 classpath 都有效。
+ 										test : 测试依赖范围。此依赖范围的 Maven 依赖，只对于测试 classpath 有效。在编译代码和运行项目的时候无法使用此依赖。
+              			provided : 以提供依赖范围。此依赖范围，只对于编译和测试 classpath 有效，在运行时无效。          			 runtime : 运行时依赖范围。此依赖范围，只对于测试和运行 classpath 有效，在编译时无效。
+										system ： 系统依赖范围。此依赖范围，只对于编译和测试 classpath 有效。在运行时无效。（使用此依赖范围必须通过 systemPath 元素显示知道依赖文件路径，<systemPath>jar路径</systemPath>）
+                    import : 倒入依赖范围。此依赖范围，不会对编译、测试、运行三种 classpath 产生实际影响。该依赖范围只在 dependency Management 元素下才有效。
+optional ： 标记依赖是否可选。
+exclusions ： 用来排出传递依赖。
+              -->
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <!-- scope标签配置依赖的范围 -->
+            <type></type>
             <scope>test</scope> 
+            <optional></optional>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
