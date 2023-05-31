@@ -4,6 +4,14 @@ CentOS 升级到7之后，无法使用 iptables控制 Linuxs 的端口。Centos 
 
 #### 防火墙基本命令如下：
 
+**启动FirewallD服务**命令：
+
+```bash
+systemctl start firewalld.service #开启服务
+
+systemctl enable firewalld.service #设置开机启动
+```
+
 查看防火墙状态：systemctl status firewalld
 
 ```
@@ -62,3 +70,51 @@ success
 systemctl stop firewalld.service #停止firewall
 
 systemctl disable firewalld.service #禁止firewall开机启动
+
+### FirewallD 常用的命令：
+
+```
+firewall-cmd --state ##查看防火墙状态，是否是running
+
+systemctl status firewalld.service ##查看防火墙状态
+
+systemctl start firewalld.service ##启动防火墙
+
+systemctl stop firewalld.service ##临时关闭防火墙
+
+systemctl enable firewalld.service ##设置开机启动防火墙
+
+systemctl disable firewalld.service ##设置禁止开机启动防火墙
+
+firewall-cmd --permanent --query-port=80/tcp ##查看80端口有没开放
+
+firewall-cmd --reload ##重新载入配置，比如添加规则之后，需要执行此命令
+
+firewall-cmd --get-zones ##列出支持的zone
+
+firewall-cmd --get-services ##列出预定义的服务
+
+firewall-cmd --query-service ftp ##查看ftp服务是否放行，返回yes或者no
+
+firewall-cmd --add-service=ftp ##临时开放ftp服务
+
+firewall-cmd --add-service=ftp --permanent ##永久开放ftp服务
+
+firewall-cmd --remove-service=ftp --permanent ##永久移除ftp服务
+
+firewall-cmd --add-port=80/tcp --permanent ##永久添加80端口
+
+firewall-cmd --zone=public --remove-port=80/tcp --permanent ##移除80端口
+
+iptables -L -n ##查看规则，这个命令是和iptables的相同的
+
+man firewall-cmd ##查看帮助
+
+参数含义：
+
+--zone #作用域
+
+--permanent #永久生效，没有此参数重启后失效
+
+```
+
